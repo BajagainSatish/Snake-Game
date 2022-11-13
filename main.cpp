@@ -4,9 +4,7 @@
 #define height 700
 #define width 1280
 
-int i, X[100], Y[100], rx, ry, gm, gd, l, d = 2, s = 16;
-int score;
-int hscore;
+int i, X[100], Y[100], rx, ry, gm, gd, l, d = 2, s = 16,score,hscore;
 FILE *fptr;
 
 void boundary();
@@ -27,7 +25,6 @@ int main()
 		fprintf(fptr, "%d%d", 0, 0);
 		fclose(fptr);
 	}
-
 	initwindow(width, height);
 	homeScreen();
 	closegraph();
@@ -37,7 +34,6 @@ int main()
 void homeScreen()
 {
 	int i, j, margin_x = 20, margin_y = 20, borderColor = 10, fillColor = 10, size = 50;
-
 	score = 0;
 
 	setfillstyle(SOLID_FILL, fillColor);
@@ -127,13 +123,10 @@ void startGame()
 	// detectgraph(&gd,&gm);
 	// initgraph(&gd,&gm,NULL);
 
-	// resolution to full screen
-
 	// set boundary
 	boundary();
 	// fill initial snake body
 	snakeinit();
-
 	// food at random location
 	food();
 	delay(1000);
@@ -141,7 +134,7 @@ void startGame()
 	while (1)
 	{
 		// updating the snake
-		setfillstyle(1, 0);
+		setfillstyle(1, 0); //trace entire path of snake
 		bar(X[l - 1] - s / 2, Y[l - 1] - s / 2, X[l - 1] + s / 2, Y[l - 1] + s / 2);
 		for (i = l - 1; i > 0; i--)
 		{
@@ -155,17 +148,15 @@ void startGame()
 		else if (d == 1)
 			Y[0] = Y[0] - s;
 		else if (d == 2)
+            //we initialized d=2, so snake moves right by default
 			X[0] = X[0] + s;
 		else if (d == 3)
 			Y[0] = Y[0] + s;
 
 		// terminating condition
-		if (getpixel(X[0] Y[0]) == 5 || getpixel(X[0]Y[0]) == 6)
+		if (getpixel(X[0],Y[0]) == 5 || getpixel(X[0],Y[0]) == 6)
 		{
-			// printing the score
-			// score = l - 5;
 			gameOver();
-			// break;
 		}
 
 		// updating direction
@@ -192,10 +183,8 @@ void startGame()
 			bar(X[i] - s / 2, Y[i] - s / 2, X[i] + s / 2, Y[i] + s / 2);
 		delay(50);
 	}
-
-	// while (!GetAsyncKeyState(VK_RETURN))
-	// 	;
 }
+
 void gameOver()
 {
 	char ch;
@@ -266,8 +255,7 @@ void boundary()
 
 void snakeinit()
 {
-	// noice
-	setfillstyle(4, 5); // display snake when immediately game opens
+	setfillstyle(1, 5); // display snake when immediately game opens
 	X[0] = s * (1270 / (2 * s));
 	Y[0] = s * (680 / (2 * s));
 	bar(X[0] - s / 2, Y[0] - s / 2, X[0] + s / 2, Y[0] + s / 2);
