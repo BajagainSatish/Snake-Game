@@ -176,7 +176,7 @@ void startGame()
 			d = 3;
 
 		// food taken
-		if (getpixel(X[0], Y[0]) == 2)
+		if (getpixel(X[0], Y[0]) == 2 || getpixel(X[0],Y[0] == 6))
 		{
 			food();
 			l = l + 1;
