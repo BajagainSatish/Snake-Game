@@ -42,7 +42,7 @@ void homeScreen()
 
 	setfillstyle(SOLID_FILL, fillColor);
 
-	/// horizontall boxes
+	// horizontal boxes
 	for (i = margin_x, j = margin_y; i < width - 50; i += size)
 	{
 		setcolor(borderColor);
@@ -123,17 +123,16 @@ void startGame()
 	score = 0;
 	cleardevice();
 	Sleep(300);
-	srand(time(0));
 
 	// detectgraph(&gd,&gm);
 	// initgraph(&gd,&gm,NULL);
 
 	// resolution to full screen
 
-	// fill initial snake body
-	snakeinit();
 	// set boundary
 	boundary();
+	// fill initial snake body
+	snakeinit();
 
 	// food at random location
 	food();
@@ -161,7 +160,7 @@ void startGame()
 			Y[0] = Y[0] + s;
 
 		// terminating condition
-		if (getpixel(X[0], Y[0]) == BLUE)
+		if (getpixel(X[0] Y[0]) == 5 || getpixel(X[0]Y[0]) == 6)
 		{
 			// printing the score
 			// score = l - 5;
@@ -188,10 +187,10 @@ void startGame()
 		}
 
 		// displaying the snake
-		setfillstyle(1, 1);
+		setfillstyle(1, 5);
 		for (i = 0; i < l; i++)
 			bar(X[i] - s / 2, Y[i] - s / 2, X[i] + s / 2, Y[i] + s / 2);
-		delay(100);
+		delay(50);
 	}
 
 	// while (!GetAsyncKeyState(VK_RETURN))
@@ -268,7 +267,7 @@ void boundary()
 void snakeinit()
 {
 	// noice
-	setfillstyle(1, 1); // display snake when immediately game opens
+	setfillstyle(4, 5); // display snake when immediately game opens
 	X[0] = s * (1270 / (2 * s));
 	Y[0] = s * (680 / (2 * s));
 	bar(X[0] - s / 2, Y[0] - s / 2, X[0] + s / 2, Y[0] + s / 2);
@@ -283,6 +282,7 @@ void snakeinit()
 
 void food()
 {
+    srand(time(0));
 	rx = s;
 	ry = s;
 	setfillstyle(1, 2);
