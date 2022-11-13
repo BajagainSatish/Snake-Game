@@ -161,7 +161,7 @@ void startGame()
 			Y[0] = Y[0] + s;
 
 		// terminating condition
-		if (getpixel(X[0], Y[0]) == BLUE)
+		if (getpixel(X[0], Y[0]) == BLUE || getpixel(X[0],Y[0] == 6))
 		{
 			// printing the score
 			// score = l - 5;
